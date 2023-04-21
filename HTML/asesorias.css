@@ -1,0 +1,112 @@
+body {
+  background-color: #ecebeb;
+}
+
+h1 {
+  margin: 20px;
+  text-align: center; /* Centra el texto del párrafo */
+  font-size: 36px;
+}
+
+.titulo {
+  display: inline-block;
+  width: 96.5%; /* Establece el ancho*/
+  height: 80px;
+  margin: 20px;
+  background-color: #004d80;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 10px;
+  vertical-align: top; /* Alineación vertical en la parte superior */
+  box-shadow: 5px 5px 5px black;
+  font-family: monospace;
+}
+
+.tabla-izquierda {
+  float: left;
+  width: 40%;
+  margin-left: 7%;
+  margin-top: 20px;
+}
+
+.tabla-derecha {
+  float: right;
+  width: 40%;
+  margin-top: 20px;
+  margin-right: 4%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  border-style: solid;
+  box-shadow: 5px 5px 5px black;
+}
+
+th {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  transition-duration: 0.4s; /* duración de la transición */
+}
+
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  transition-duration: 0.4s; /* duración de la transición */
+}
+
+td:hover {
+  background-color: #004d80; /* color de fondo al pasar el cursor */
+  color: white;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.inicio {
+  display: inline-block;
+  margin: 20px;
+  background-color: #004d80;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 10px;
+  vertical-align: top; /* Alineación vertical en la parte superior */
+  box-shadow: 5px 5px 5px black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.disponible {
+  background-color: rgb(2, 169, 2);
+  color: white;
+}
+
+.disponible:hover {
+  background-color: green;
+}
+
+.nodisp {
+  background-color: white;
+}
+
+.nodisp:hover {
+  background-color: rgb(182, 0, 0);
+  font-weight: bold;
+}
+
+.frase {
+  background-color: #004d80;
+  color: white;
+  text-align: center;
+  width: 96.5%; /* Establece el ancho deseado */
+  height: 100px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  margin-top: 26.5%;
+}
