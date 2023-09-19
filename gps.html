@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display buildings in 3D</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+<link rel="stylesheet" href="gps.css">
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; height: 90%;}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoianVsaWFuaG0yIiwiYSI6ImNsbXB0ZTV4OTBuZm4ya24zdGUwbDZ0Zm0ifQ.tEpACO57mBH0yWkH5d82eQ';
+    const map = new mapboxgl.Map({
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/mapbox/satellite-streets-v12',
+        center: [-75.63879, 6.09969],
+        zoom: 15.5,
+        pitch: 45,
+        bearing: -17.6,
+        container: 'map',
+        antialias: true
+    });
+
+    map.on('style.load', () => {
+        // Insert the layer beneath any symbol layer.
+        const layers = map.getStyle().layers;
+        const labelLayerId = layers.find(
+            (layer) => layer.type === 'symbol' && layer.layout['text-field']
+        ).id;
+
+        // The 'building' layer in the Mapbox Streets
+        // vector tileset contains building height data
+        // from OpenStreetMap.
+        map.addLayer(
+            {
+                'id': 'add-3d-buildings',
+                'source': 'composite',
+                'source-layer': 'building',
+                'filter': ['==', 'extrude', 'true'],
+                'type': 'fill-extrusion',
+                'minzoom': 15,
+                'paint': {
+                    'fill-extrusion-color': '#aaa',
+
+                    // Use an 'interpolate' expression to
+                    // add a smooth transition effect to
+                    // the buildings as the user zooms in.
+                    'fill-extrusion-height': [
+                        'interpolate',
+                        ['linear'],
+                        ['zoom'],
+                        15,
+                        0,
+                        15.05,
+                        ['get', 'height']
+                    ],
+                    'fill-extrusion-base': [
+                        'interpolate',
+                        ['linear'],
+                        ['zoom'],
+                        15,
+                        0,
+                        15.05,
+                        ['get', 'min_height']
+                    ],
+                    'fill-extrusion-opacity': 0.6
+                }
+            },
+            labelLayerId
+        );
+    });
+
+//Primer marcador (Gimnasio)
+let element = document.createElement('div')
+element.className = 'marker'
+
+element.addEventListener('click', () => {
+  window.alert('Es posible acceder tanto desde los estacionamientos como a través del edificio administrativo, pasando los laboratorios industriales. (Se ubica en el mismo bloque que el estacionamiento.)')
+})
+
+let marker = new mapboxgl.Marker(element)
+  .setLngLat({
+    lng: -75.63840,
+    lat: 6.09920
+  })
+  .addTo(map)
+
+// Segundo marcador (Estacionamiento)
+let element2 = document.createElement('div')
+element2.className = 'marker2'
+
+element2.addEventListener('click', () => {
+  window.alert('Es posible acceder tanto desde los estacionamientos como a través del edificio administrativo, pasando los laboratorios industriales. (Se ubica en el mismo bloque del gimnasio.)')
+})
+
+let marker2 = new mapboxgl.Marker(element2)
+  .setLngLat({
+    lng: -75.63853,
+    lat: 6.09925
+  })
+  .addTo(map)
+
+// Tercer marcador (Bloque A)
+let element3 = document.createElement('div')
+element3.className = 'marker3'
+
+element3.addEventListener('click', () => {
+  window.alert('Puedes caminar recto 50m y girar a la derecha.')
+})
+
+let marker3 = new mapboxgl.Marker(element3)
+  .setLngLat({
+    lng: -75.63785,
+    lat: 6.09971
+  }) 
+  .addTo(map)
+
+// Cuarto marcador (Bloque B)
+let element4 = document.createElement('div')
+element4.className = 'marker4'
+
+element4.addEventListener('click', () => {
+  window.alert('Puedes caminar recto 75m y girar a la derecha.')
+})
+
+let marker4 = new mapboxgl.Marker(element4)
+  .setLngLat({
+    lng: -75.63807,
+    lat: 6.09998
+  }) 
+  .addTo(map)
+
+// Cuarto marcador (Bloque C)
+let element5 = document.createElement('div')
+element5.className = 'marker5'
+
+element5.addEventListener('click', () => {
+  window.alert('Puedes caminar recto 100m y girar a la derecha.')
+})
+
+let marker5 = new mapboxgl.Marker(element5)
+  .setLngLat({
+    lng: -75.63831,
+    lat: 6.10028
+  })
+  .addTo(map)
+
+
+// Cuarto marcador (Bloque C)
+let element6 = document.createElement('div')
+element6.className = 'marker6'
+
+element6.addEventListener('click', () => {
+  window.alert('Puedes caminar recto 100m y girar a la derecha.')
+})
+
+let marker6 = new mapboxgl.Marker(element6)
+  .setLngLat({
+    lng: -75.63902,
+    lat: 6.10015
+  })
+  .addTo(map)
+</script>
+
+<h1>GPS UniLaSallista</h1>
+<p>
+  (Proximamente las ubicaciónes de los salones)
+</p>
+
+
+</body>
+</html>
